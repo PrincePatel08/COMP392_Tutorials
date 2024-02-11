@@ -145,11 +145,19 @@
   <ItemGroup>
     <ClCompile Include="firstApp.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="realmx_pipeline.cpp" />
     <ClCompile Include="realmx_window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="firstApp.h" />
+    <ClInclude Include="realmx_pipeline.h" />
     <ClInclude Include="realmx_window.h" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="compile.bat" />
+    <None Include="simple_shader.frag" />
+    <None Include="simple_shader.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
