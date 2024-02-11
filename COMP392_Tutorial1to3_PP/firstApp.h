@@ -2,6 +2,7 @@
 
 #include "realmx_window.h"
 #include "realmx_pipeline.h"
+#include "realmx_device.h"
 
 namespace realm
 {
@@ -14,7 +15,8 @@ namespace realm
 
 	private:
 		RealmXWindow window{ WIDTH, HEIGHT, "Hello Vulkan!" };
-		RealmXPipeline pipeline{ "Shaders/simple_shader_vert.spv", "Shaders/simple_shader_frag.spv" };
+		RealmXDevice device{ window };
+		RealmXPipeline pipeline{ device, "Shaders/simple_shader_vert.spv", "Shaders/simple_shader_frag.spv", RealmXPipeline::defaultPipelineConfigInfo(WIDTH, HEIGHT) };
 	};
 }
 

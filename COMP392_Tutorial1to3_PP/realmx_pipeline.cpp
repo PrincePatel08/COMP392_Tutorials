@@ -5,9 +5,16 @@
 
 namespace realm
 {
-	RealmXPipeline::RealmXPipeline(const std::string& vertFilePath, const std::string& fragFilePath)
+	RealmXPipeline::RealmXPipeline(RealmXDevice& device, const std::string& vertFilePath, const std::string& fragFilePath, const PipelineConfigInfo& configInfo) : device(device)
 	{
-		createGraphicsPipeline(vertFilePath, fragFilePath);
+		createGraphicsPipeline(vertFilePath, fragFilePath, configInfo);
+	}
+
+	RealmXPipeline::~RealmXPipeline()
+	{
+		vkDestroyShaderModule(device.device(), fragShaderModule, nullptr);
+		vkDestroyShaderModule(device.device(), vertShaderModule, nullptr);
+		vkDestroyPipeline(device.device(), graphicsPipeline, nullptr);
 	}
 
 	std::vector<char> RealmXPipeline::readFile(const std::string& filePath)
@@ -29,12 +36,29 @@ namespace realm
 		return buffer;
 	}
 
-	void RealmXPipeline::createGraphicsPipeline(const std::string& vertFilePath, const std::string& fragFilePath)
+	void RealmXPipeline::createGraphicsPipeline(const std::string& vertFilePath, const std::string& fragFilePath, const PipelineConfigInfo& configInfo)
 	{
 		auto vertCode = readFile(vertFilePath);
 		auto fragCode = readFile(fragFilePath);
 
 		std::cout << "Vertex Shader Code Size: " << vertCode.size() << std::endl;
 		std::cout << "Fragment Shader Code Size: " << fragCode.size() << std::endl;
+	}
+
+	void RealmXPipeline::createShaderModule(const std::vector<char>& code, VkShaderModule* shaderModule) {
+		VkShaderModuleCreateInfo createInfo{};
+		createInfo.sType = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO;
+		createInfo.codeSize = code.size();
+		createInfo.pCode = reinterpret_cast<const uint32_t*>(code.data());
+
+		if (vkCreateShaderModule(device.device(), &createInfo, nullptr, shaderModule) != VK_SUCCESS) {
+			throw std::runtime_error("Failed to create shader module");
+		}
+	}
+
+	PipelineConfigInfo RealmXPipeline::defaultPipelineConfigInfo(uint32_t width, uint32_t height)
+	{
+		PipelineConfigInfo configInfo{};
+		return configInfo;
 	}
 }

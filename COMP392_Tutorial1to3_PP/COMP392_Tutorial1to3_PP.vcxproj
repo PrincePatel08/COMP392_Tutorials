@@ -145,11 +145,13 @@
   <ItemGroup>
     <ClCompile Include="firstApp.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="realmx_device.cpp" />
     <ClCompile Include="realmx_pipeline.cpp" />
     <ClCompile Include="realmx_window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="firstApp.h" />
+    <ClInclude Include="realmx_device.h" />
     <ClInclude Include="realmx_pipeline.h" />
     <ClInclude Include="realmx_window.h" />
     <ClInclude Include="resource.h" />
