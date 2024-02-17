@@ -147,6 +147,7 @@
     <ClCompile Include="firstApp.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="realmx_device.cpp" />
+    <ClCompile Include="realmx_model.cpp" />
     <ClCompile Include="realmx_pipeline.cpp" />
     <ClCompile Include="realmx_swap_chain.cpp" />
     <ClCompile Include="realmx_window.cpp" />
@@ -154,6 +155,7 @@
   <ItemGroup>
     <ClInclude Include="firstApp.h" />
     <ClInclude Include="realmx_device.h" />
+    <ClInclude Include="realmx_model.h" />
     <ClInclude Include="realmx_pipeline.h" />
     <ClInclude Include="realmx_swap_chain.h" />
     <ClInclude Include="realmx_window.h" />

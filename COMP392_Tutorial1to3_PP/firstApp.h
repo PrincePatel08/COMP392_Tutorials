@@ -4,6 +4,7 @@
 #include "realmx_pipeline.h"
 #include "realmx_device.h"
 #include "realmx_swap_chain.h"
+#include "realmx_model.h"
 
 #include <memory>
 #include <vector>
@@ -24,6 +25,7 @@ namespace realm
 		void run() ;
 
 	private:
+		void loadModels();
 		void createPipelineLayout();
 		void createPipeline();
 		void createCommandBuffers();
@@ -35,6 +37,7 @@ namespace realm
 		std::unique_ptr<RealmXPipeline> realmxPipeline;
 		VkPipelineLayout pipelineLayout;
 		std::vector<VkCommandBuffer> commandBuffers;
+		std::unique_ptr<RealmXModel> realmxModel;
 	};
 }
 

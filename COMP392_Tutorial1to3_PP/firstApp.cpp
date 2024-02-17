@@ -7,6 +7,7 @@ namespace realm
 {
 	FirstApp::FirstApp()
 	{
+		loadModels();
 		createPipelineLayout();
 		createPipeline();
 		createCommandBuffers();
@@ -25,6 +26,17 @@ namespace realm
 		}
 
 		vkDeviceWaitIdle(realmxDevice.device()); // Wait for the device to finish operations before cleaning up
+	}
+
+	void FirstApp::loadModels()
+	{
+		std::vector<RealmXModel::Vertex> vertices {
+			{{0.0f, -0.5f, 0.0f}},
+			{{0.5f, 0.5f, 0.0f}},
+			{{-0.5f, 0.5f, 0.0f}}
+		};
+
+		realmxModel = std::make_unique<RealmXModel>(realmxDevice, vertices);
 	}
 
 	void FirstApp::createPipelineLayout()
@@ -85,7 +97,8 @@ namespace realm
 			vkCmdBeginRenderPass(commandBuffers[i], &renderPassInfo, VK_SUBPASS_CONTENTS_INLINE);
 
 			realmxPipeline->bind(commandBuffers[i]);
-			vkCmdDraw(commandBuffers[i], 3, 1, 0, 0);
+			realmxModel->bind(commandBuffers[i]);
+			realmxModel->draw(commandBuffers[i]);
 
 			vkCmdEndRenderPass(commandBuffers[i]);
 			if (vkEndCommandBuffer(commandBuffers[i]) != VK_SUCCESS)
