@@ -29,6 +29,9 @@
     <ClCompile Include="realmx_device.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="realmx_swap_chain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="realmx_window.h">
@@ -44,6 +47,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="realmx_device.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="realmx_swap_chain.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
