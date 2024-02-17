@@ -27,8 +27,9 @@ namespace realm
 		~RealmXPipeline();
 		
 		RealmXPipeline(const RealmXPipeline&) = delete;
-		RealmXPipeline &operator=(const RealmXPipeline&) = delete;
+		void operator=(const RealmXPipeline&) = delete;
 
+		void bind(VkCommandBuffer commandBuffer);
 		static PipelineConfigInfo defaultPipelineConfigInfo(uint32_t width, uint32_t height);
 
 	private:
